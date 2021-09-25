@@ -1,3 +1,8 @@
+/* 
+    Hugo Aponte
+    ProbingHash class
+*/
+
 #ifndef __PROBING_HASH_H
 #define __PROBING_HASH_H
 
