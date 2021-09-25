@@ -1,7 +1,7 @@
 /*******************************************************************************************
 * Programmer: Hugo Aponte																   *
-* Class: CptS 223, Fall, 2020;              											   *
-* Programming Assignment: PA3															   *
+*                    Fall, 2020;              											   *
+*                           PA3															   *
 * Date: October 9th, 2020																   *					
 * Description: This program reads in cancer data from various files: both men and women,   *
 *               men alone, and women alone. The goal is to create three AVL trees that     *
