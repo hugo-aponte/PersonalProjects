@@ -1,14 +1,17 @@
+
+/* 
+    Hugo Aponte
+    main function for hash object implementations 
+*/
 #include "pa5.h"
 
-/* How did the serial implementations for the ChainingHash and ProbingHash compare to each other? Did you expect the time results obtained? Explain.
+/* 
     The Chaining Hash was faster at searching and removing while the Probeing Hash was faster at inserting items. I was expecting something like this since Probing Hash 
     does not depend on an extra data structure like Chaining Hash does.  
 
-      (8 pts) Compare the parallel and serial implementations for the ProbingHash. Did the parallel implementations provide you with the expected speedup? Explain.
     If the parallel implementation would have been implemented with precise knowledge of how to use openmp, it would most likely result in a speedup. It's difficult to say
     based on this program because the parallel implementation is neither efficient nor fully-functioning.
 
-      (8 pts) What could you change in your parallel implementations to improve performance and speedup? Explain. 
     I could add parallel sections and use more precise keywords for the proper situations and connotations. Additionally, if the parallel implementation were
     fully-functioning, it would in and of itself improve performace and speedup.
       */
@@ -19,11 +22,15 @@ int main()
     ChainingHash<int, int> *hashT1 = new ChainingHash<int, int>(101);
     ProbingHash<int, int> *hashT2 = new ProbingHash<int, int>(101);
     ParallelProbingHash<int, int> *hashT3 = new ParallelProbingHash<int, int>(101);
+    
+    // these variables are bad lexicon smells, however the intention of this program is to facilitates printing the time of different functions corresponding to the different versions of hashes
     double timeInsert1 = 0, timeInsert2 = 0, timeInsert3 = 0, timeSearch1 = 0, timeSearch2 = 0, timeSearch3 = 0, timeRemove1 = 0, timeRemove2 = 0, timeRemove3 = 0;
+    
+    // writing to a file
     std::fstream iFile;
     iFile.open("HashAnalysis.txt", std::ios::out);
 
-
+    // every function returns the time it took to execute in a double
     timeInsert1 = populate(hashT1) / CLOCKS_PER_SEC;
     timeInsert2 = populate(hashT2) / CLOCKS_PER_SEC;
     iFile << "ChainingHash object insert execution time: " << timeInsert1 << "\n";
@@ -58,6 +65,7 @@ int main()
     timeInsert3 = populate(hashT3) / CLOCKS_PER_SEC; // 4 is the amount of cores my computer has
     iFile << "ParallelProbingHash (multithread) object insert execution time: " << timeInsert3 << "\n";
 
+// unsuccessful attempt at parallel threading 
     #pragma omp parallel num_threads(2)
     {
         if(omp_get_thread_num() == 0)
